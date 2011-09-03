@@ -310,7 +310,6 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>generate-ciclass</goal>
                             <goal>generate-installation</goal>
                         </goals>
                     </execution>
@@ -413,6 +412,5 @@
             <artifactId>timereport</artifactId>
             <version>${project.version}</version>
         </dependency>
-
     </dependencies>
 </project>
