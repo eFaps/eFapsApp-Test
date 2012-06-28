@@ -24,6 +24,7 @@
 
     <filter path="/*" name="eFaps" classname="org.apache.wicket.protocol.http.WicketFilter">
         <parameter key="applicationClassName">org.efaps.ui.wicket.EFapsApplication</parameter>
+        <parameter key="filterMappingUrlPattern">/*</parameter>
         <!--
             <parameter key="org.efaps.login.roles">Sales_Admin</parameter>
             <parameter key="org.efaps.application.key">applicationkey</parameter>
