@@ -303,15 +303,5 @@
             <artifactId>connector</artifactId>
             <version>1.0</version>
         </dependency>
-
-
-
-
-         <dependency>
-            <groupId>org.eclipse.jetty.aggregate</groupId>
-            <artifactId>jetty-all-server</artifactId>
-            <version>${jetty.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 </project>
