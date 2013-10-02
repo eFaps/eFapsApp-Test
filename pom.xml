@@ -117,49 +117,94 @@
   ************************************************************************* -->
     <build>
         <plugins>
-            <!--
-                eFaps plugin
-            -->
             <plugin>
                 <groupId>org.efaps</groupId>
                 <artifactId>efaps-maven-plugin</artifactId>
-                <version>${maven.efaps.version}</version>
+                <version>4.2.0-8.1.11.v20130520-SNAPSHOT</version>
                 <executions>
                     <execution>
+                        <phase>generate-resources</phase>
                         <goals>
+                            <goal>generate-ciclass</goal>
                             <goal>generate-installation</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
+                    <eFapsDir>${basedir}/src/main/innobix</eFapsDir>
+                    <versionFile>${basedir}/src/main/innobix/versions.xml</versionFile>
+                    <ciName>Innobix</ciName>
                     <userName>Administrator</userName>
                     <passWord>Administrator</passWord>
                     <!-- used from the generateUUID goal -->
                     <count>${count}</count>
+                    <file>${file}</file>
+                    <profile>${profile}</profile>
+                    <connection>username = efaps,
+    password = efaps,
+    driverClassName = org.postgresql.Driver,
+    url = jdbc:postgresql://127.0.0.1:5432/test,
+    factory = org.apache.commons.dbcp.BasicDataSourceFactory,
+    maxActive = 100,
+    maxIdle = 10,
+    maxWait = -1,
+    removeAbandoned = true,
+    logAbandoned = true</connection>
                 </configuration>
                 <dependencies>
                     <!-- Connection Pooling -->
                     <dependency>
                         <groupId>commons-dbcp</groupId>
                         <artifactId>commons-dbcp</artifactId>
-                        <version>${commons.dbcp.version}</version>
+                        <version>1.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.efaps</groupId>
+                        <artifactId>number2words</artifactId>
+                        <version>0.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.efaps</groupId>
+                        <artifactId>efaps-kernel-install</artifactId>
+                        <version>${efaps-app.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.efaps</groupId>
                 <artifactId>efaps-jetty-maven-plugin</artifactId>
-                <version>${maven.efaps.jetty.version}</version>
+                <version>3.2.0-8.1.11.v20130520-SNAPSHOT</version>
                 <configuration>
                     <jaasConfigFile>${basedir}/src/main/jetty/jaas.config</jaasConfigFile>
+                    <envFile>${basedir}/src/main/jetty/jetty-env.xml</envFile>
                     <configFile>file:${basedir}/src/main/jetty/eFaps-jetty.xml</configFile>
+                    <connection>username = efaps,
+    password = efaps,
+    driverClassName = org.postgresql.Driver,
+    url = jdbc:postgresql://127.0.0.1:5432/test,
+    factory = org.apache.commons.dbcp.BasicDataSourceFactory,
+    maxActive = 100,
+    maxIdle = 10,
+    maxWait = -1,
+    removeAbandoned = true,
+    logAbandoned = true</connection>
                 </configuration>
                 <dependencies>
                     <!-- as dependency, the modul itself is used-->
                     <dependency>
                         <groupId>org.efaps.apps</groupId>
                         <artifactId>test</artifactId>
-                        <version>${efaps.app.dependencies}</version>
+                        <version>${project.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.efaps</groupId>
+                                <artifactId>efaps-mobile</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>org.efaps</groupId>
+                                <artifactId>efaps-webapp</artifactId>
+                            </exclusion>
+                        </exclusions>
                     </dependency>
                 </dependencies>
             </plugin>
