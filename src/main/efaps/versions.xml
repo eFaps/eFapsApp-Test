@@ -28,85 +28,79 @@
     xsi:schemaLocation="http://www.efaps.org/xsd http://www.efaps.org/xsd/eFaps_1.0.xsd">
     <application>eFaps Test App</application>
     <dependencies>
-        <dependency order="0">
+     <!--    <dependency order="0">
             <groupId>org.efaps</groupId>
             <artifactId>efaps-kernel-install</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="1">
             <groupId>org.efaps</groupId>
             <artifactId>efaps-webapp-install</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="2">
             <groupId>org.efaps.apps</groupId>
             <artifactId>logback</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
-        <dependency order="3">
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>archives</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
-        </dependency>
+        
         <dependency order="4">
             <groupId>org.efaps.apps</groupId>
             <artifactId>contacts</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="5">
             <groupId>org.efaps.apps</groupId>
             <artifactId>commons</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
-        <dependency order="6">
-            <groupId>org.efaps.localizations</groupId>
-            <artifactId>ubicaciones</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
-        </dependency>
+       
         <dependency order="7">
             <groupId>org.efaps.apps</groupId>
             <artifactId>products</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="8">
             <groupId>org.efaps.apps</groupId>
             <artifactId>sales</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
-        <dependency order="9">
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>issues</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
-        </dependency>
+      
         <dependency order="10">
             <groupId>org.efaps.apps</groupId>
             <artifactId>accounting</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="11">
             <groupId>org.efaps.apps</groupId>
             <artifactId>projects</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="12">
             <groupId>org.efaps.apps</groupId>
             <artifactId>humanresource</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="13">
             <groupId>org.efaps.apps</groupId>
             <artifactId>payroll</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency order="14">
             <groupId>org.efaps.apps</groupId>
             <artifactId>timereport</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
-        <dependency order="15">
+         -->
+         <dependency order="15">
             <groupId>org.efaps.apps</groupId>
-            <artifactId>jms</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
+            <artifactId>locations</artifactId>
+            <version>3.2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency order="16">
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>assets</artifactId>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <version number="1" reloadCache="true" login="true" compile="true">
