@@ -122,13 +122,13 @@
                 <artifactId>efaps-maven-plugin</artifactId>
                 <version>4.2.0-SNAPSHOT</version>
                 <executions>
-                    <execution>
+                 <execution>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>generate-ciclass</goal>
                             <goal>generate-installation</goal>
                         </goals>
-                    </execution>
+                    </execution>             
                 </executions>
                 <configuration>
                     <eFapsDir>${basedir}/src/main/efaps</eFapsDir>
@@ -164,10 +164,10 @@
                         <version>0.2</version>
                     </dependency>
                     <dependency>
-                        <groupId>org.efaps</groupId>
-                        <artifactId>efaps-kernel-install</artifactId>
+                        <groupId>org.efaps.apps</groupId>
+                        <artifactId>data</artifactId>
                         <version>3.2.0-SNAPSHOT</version>
-                    </dependency>
+                    </dependency>                   
                 </dependencies>
             </plugin>
             <plugin>
@@ -295,7 +295,11 @@
             <artifactId>jms</artifactId>
             <version>${efaps.app.dependencies}</version>
         </dependency>
-        
+         <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>data</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
         <dependency>
             <groupId>org.efaps.apps</groupId>
             <artifactId>assets</artifactId>
