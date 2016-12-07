@@ -16,121 +16,38 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
- Author:          The eFaps Team
- Revision:        $Rev: 7043 $
- Last Changed:    $Date: 2011-09-01 16:57:26 -0500 (Thu, 01 Sep 2011) $
- Last Changed By: $Author: jan@moxter.net $
-
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- ************************************************************************
-    * Module Definition
-    ************************************************************************* -->
-    <parent>
+     <parent>
         <groupId>org.efaps</groupId>
         <artifactId>efaps-parent</artifactId>
-        <version>3.2.0-SNAPSHOT</version>
+        <version>8.1.0-SNAPSHOT</version>
     </parent>
-
-    <packaging>jar</packaging>
     <groupId>org.efaps.apps</groupId>
     <artifactId>test</artifactId>
-    <name>eFaps Test App</name>
-    <description>
-    </description>
-
-    <url>http://www.efaps.org</url>
-    <licenses>
-        <license>
-            <name>Apache 2.0 License</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <id>tim.moxter</id>
-            <name>Tim Moxter</name>
-            <email>tim.moxter(ad)efaps.org</email>
-            <url>www.efaps.org</url>
-            <organization>moxter.net Ltd. &amp; Co.KG</organization>
-            <organizationUrl>http://www.moxter.net/de/</organizationUrl>
-            <timezone>+1</timezone>
-            <properties />
-        </developer>
-        <developer>
-            <id>jan.moxter</id>
-            <name>Jan Moxter</name>
-            <email>jan.moxter(ad)efaps.org</email>
-            <url>www.efaps.org</url>
-            <organization>moxter.net S.A.C, Peru</organization>
-            <organizationUrl>http://www.moxter.net/pe/</organizationUrl>
-            <timezone>-5</timezone>
-            <properties />
-        </developer>
-    </developers>
-    <inceptionYear>2003</inceptionYear>
-    <organization>
-        <name>The eFaps Team</name>
-        <url>http://www.efaps.org</url>
-    </organization>
-
-    <!-- Environment Settings -->
-    <issueManagement>
-        <system>eFaps Issues on Google Code</system>
-        <url>http://issues.efaps.org</url>
-    </issueManagement>
-
-    <!-- SubVersion Repository -->
-    <scm>
-        <connection>scm:svn:http://efaps.googlecode.com/svn/eFaps-WebApp-Install</connection>
-        <developerConnection>scm:svn:https://efaps.googlecode.com/svn/eFaps-WebApp-Install</developerConnection>
-        <url>http://efaps.googlecode.com/svn/eFaps-WebApp-Install</url>
-    </scm>
-
-    <!-- Distribution Repository -->
-    <distributionManagement>
-        <site>
-            <id>efaps</id>
-            <name>Maven eFaps Plug-In Site</name>
-            <url>svn:https://eFaps.googlecode.com/svn/site/eFaps-WebApp-Install</url>
-        </site>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <!-- ************************************************************************
-  * Project itself
-  ************************************************************************* -->
+    <name> Test App for</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.efaps</groupId>
                 <artifactId>efaps-maven-plugin</artifactId>
-                <version>4.2.0-SNAPSHOT</version>
+                <version>${maven.efaps.version}</version>
                 <executions>
-                 <execution>
+                    <execution>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>generate-ciclass</goal>
                             <goal>generate-installation</goal>
                         </goals>
-                    </execution>             
+                    </execution>
                 </executions>
                 <configuration>
+                    <factory>org.apache.commons.dbcp2.BasicDataSourceFactory</factory>
                     <eFapsDir>${basedir}/src/main/efaps</eFapsDir>
                     <versionFile>${basedir}/src/main/efaps/versions.xml</versionFile>
                     <ciName>Test</ciName>
@@ -141,56 +58,51 @@
                     <file>${file}</file>
                     <profile>${profile}</profile>
                     <connection>username = efaps,
-    password = efaps,
-    driverClassName = org.postgresql.Driver,
-    url = jdbc:postgresql://127.0.0.1:5432/test,
-    factory = org.apache.commons.dbcp.BasicDataSourceFactory,
-    maxActive = 100,
-    maxIdle = 10,
-    maxWait = -1,
-    removeAbandoned = true,
-    logAbandoned = true</connection>
+                        password = efaps,
+                        driverClassName = org.postgresql.Driver,
+                        url = jdbc:postgresql://127.0.0.1:5432/test,
+                        maxTotal = -1,
+                        maxActive = 100,
+                        maxIdle = 10,
+                        maxWait = -1,
+                        removeAbandoned = true,
+                        logAbandoned = true</connection>
                 </configuration>
                 <dependencies>
-                    <!-- Connection Pooling -->
                     <dependency>
-                        <groupId>commons-dbcp</groupId>
-                        <artifactId>commons-dbcp</artifactId>
-                        <version>1.4</version>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-dbcp2</artifactId>
+                        <version>${commons.dbcp.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.efaps</groupId>
-                        <artifactId>number2words</artifactId>
-                        <version>0.2</version>
+                        <artifactId>efaps-webapp-install</artifactId>
+                        <version>${project.version}</version>
                     </dependency>
-                    <dependency>
-                        <groupId>org.efaps.apps</groupId>
-                        <artifactId>data</artifactId>
-                        <version>3.2.0-SNAPSHOT</version>
-                    </dependency>                   
                 </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.efaps</groupId>
                 <artifactId>efaps-jetty-maven-plugin</artifactId>
-                <version>3.2.0-9.0.6.v20130930-SNAPSHOT</version>
+                <version>${maven.efaps.jetty.version}</version>
                 <configuration>
+                    <factory>org.apache.commons.dbcp2.BasicDataSourceFactory</factory>
                     <jaasConfigFile>${basedir}/src/main/jetty/jaas.config</jaasConfigFile>
                     <envFile>${basedir}/src/main/jetty/jetty-env.xml</envFile>
                     <configFile>file:${basedir}/src/main/jetty/eFaps-jetty.xml</configFile>
                     <connection>username = efaps,
-    password = efaps,
-    driverClassName = org.postgresql.Driver,
-    url = jdbc:postgresql://127.0.0.1:5432/test,
-    factory = org.apache.commons.dbcp.BasicDataSourceFactory,
-    maxActive = 100,
-    maxIdle = 10,
-    maxWait = -1,
-    removeAbandoned = true,
-    logAbandoned = true</connection>
+                        password = efaps,
+                        driverClassName = org.postgresql.Driver,
+                        url = jdbc:postgresql://127.0.0.1:5432/test,
+                        maxTotal = -1,
+                        maxActive = 100,
+                        maxIdle = 10,
+                        maxWait = -1,
+                        removeAbandoned = true,
+                        logAbandoned = true</connection>
                 </configuration>
                 <dependencies>
-                    <!-- as dependency, the modul itself is used-->
+                    <!-- as dependency, the modul itself is used -->
                     <dependency>
                         <groupId>org.efaps.apps</groupId>
                         <artifactId>test</artifactId>
@@ -208,184 +120,28 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${basedir}/src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
-    <!-- ************************************************************************
-    * Dependencies
-    ************************************************************************* -->
     <dependencies>
         <dependency>
-            <groupId>org.efaps</groupId>
-            <artifactId>efaps-kernel-install</artifactId>
-            <version>${efaps.app.dependencies}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${commons.dbcp.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.efaps</groupId>
-            <artifactId>efaps-webapp-install</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>logback</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>archives</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>contacts</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>commons</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.localizations</groupId>
-            <artifactId>ubicaciones</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>products</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>sales</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>issues</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>accounting</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>projects</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>humanresource</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>payroll</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>timereport</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-         <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>jms</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-         <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>data</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.efaps.apps</groupId>
-            <artifactId>assets</artifactId>
-            <version>${efaps.app.dependencies}</version>
-        </dependency>
-
-        <!--  make this app runable -->
-        <!-- Needed for jetty name binding -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-pool</groupId>
-            <artifactId>commons-pool</artifactId>
-            <version>20030825.183949</version>
-        </dependency>
-
-
-                <!-- java transaction manager -->
-        <dependency>
-            <groupId>jotm</groupId>
-            <artifactId>jotm</artifactId>
-            <version>2.0.10</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.resource</groupId>
-                    <artifactId>connector-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- replacement for the javax.resource.connector-api-1.5 needed by jotm-->
-        <dependency>
-            <groupId>org.ow2.spec.ee</groupId>
-            <artifactId>ow2-connector-1.5-spec</artifactId>
-            <version>1.0.11</version>
-        </dependency>
-        <!-- Needed indirectly for the transaction manager -->
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.resource</groupId>
-            <artifactId>connector</artifactId>
-            <version>1.0</version>
-        </dependency>
-        
-         <!--  Needed for namespace binding JNDI -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-jndi</artifactId>
-            <version>${jetty.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.mail</groupId>
-                    <artifactId>mail</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-         <!-- java transaction manager -->
         <dependency>
             <groupId>org.jboss.jbossts.jta</groupId>
             <artifactId>narayana-jta</artifactId>
-            <version>4.17.4.Final</version>
+            <version>${jboss.jta.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>jfreechart</artifactId>
@@ -396,6 +152,16 @@
                     <groupId>org.hornetq</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps</groupId>
+            <artifactId>efaps-webapp-install</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps</groupId>
+            <artifactId>number2words</artifactId>
+            <version>0.2</version>
         </dependency>
     </dependencies>
 </project>
